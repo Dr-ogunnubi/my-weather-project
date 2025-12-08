@@ -68,8 +68,9 @@ a {
   display: flex;
 }
 .temperature-icon {
-  font-size: 48px;
-  margin-top: -10px;
+  width: 88px;
+  height: 88px;
+  margin-top: -35px;
 }
 .temperature-value {
   font-size: 88px;
@@ -79,6 +80,6 @@ a {
 }
 .temperature-unit {
   font-size: large;
-  margin-top: -20px;
+  margin-top: -25px;
   font-size: 28px;
 }

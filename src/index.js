@@ -9,12 +9,16 @@ function showWeather(response) {
   let weatherWindElement = document.querySelector("#weather-wind");
   let weatherTimeElement = document.querySelector("#weather-time");
   let date = new Date(response.data.time * 1000);
-  console.log(date);
+  let temperatureIconElement = document.querySelector("#temperature-icon");
 
   let temperature = Math.round(response.data.temperature.current);
   let weatherHumidity = `${response.data.temperature.humidity}%`;
   let weatherWind = `${response.data.wind.speed}Km/h`;
 
+  temperatureIconElement.innerHTML = `<img
+      src="${response.data.condition.icon_url}"
+      class="temperature-icon"
+    />`;
   weatherTimeElement.innerHTML = formateDate(date);
   weatherWindElement.innerHTML = weatherWind;
   weatherHumidityElement.innerHTML = weatherHumidity;
