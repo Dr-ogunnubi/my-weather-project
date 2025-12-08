@@ -7,11 +7,15 @@ function showWeather(response) {
   let weatherDescription = document.querySelector("#weather-description");
   let weatherHumidityElement = document.querySelector("#weather-humidity");
   let weatherWindElement = document.querySelector("#weather-wind");
+  let weatherTimeElement = document.querySelector("#weather-time");
+  let date = new Date(response.data.time * 1000);
+  console.log(date);
 
   let temperature = Math.round(response.data.temperature.current);
   let weatherHumidity = `${response.data.temperature.humidity}%`;
   let weatherWind = `${response.data.wind.speed}Km/h`;
 
+  weatherTimeElement.innerHTML = formateDate(date);
   weatherWindElement.innerHTML = weatherWind;
   weatherHumidityElement.innerHTML = weatherHumidity;
   temperatureValueElement.innerHTML = temperature;
@@ -33,30 +37,30 @@ function searchCity(city) {
   axios.get(apiUrl).then(showWeather);
 }
 
-let now = new Date();
-let day = now.getDay();
-let minute = now.getMinutes();
-let hours = now.getHours();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-day = days[now.getDay()];
-console.log(day);
+function formateDate(date) {
+  let day = date.getDay();
+  let minute = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  day = days[date.getDay()];
+  console.log(day);
 
-if (minute < 10) {
-  minute = `0${minute}`;
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+  let time = `${hours}:${minute}`;
+  console.log(time);
+
+  return `${day} ${time}`;
 }
-let time = `${hours}:${minute}`;
-console.log(time);
-
-formatDate = `${day} ${time}`
-
 
 function getCity(event) {
   event.preventDefault();
